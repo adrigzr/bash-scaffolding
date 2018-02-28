@@ -37,7 +37,7 @@ $ bash run format
 Install [bats](https://github.com/sstephenson/bats).
 
 ```sh
-$ git clone https://github.com/sstephenson/bats.git && bats/install.sh ~
+$ git clone https://github.com/bats-core/bats-core.git && sudo bats-core/install.sh /usr/local
 ```
 
 Install [syntax highlight](https://github.com/sstephenson/bats/wiki/Syntax-Highlighting).

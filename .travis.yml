@@ -2,11 +2,10 @@
 language: bash
 
 before_install:
-  - git clone https://github.com/sstephenson/bats.git ../bats
-  - ../bats/install.sh $HOME/.local/bin
+  - git clone https://github.com/bats-core/bats-core.git $HOME/bats-core
 
 before_script:
-  - export PATH="$HOME/.local/bin:${PATH}"
+  - export PATH="$HOME/bats-core/bin:${PATH}"
 
 script:
   - bash run lint
