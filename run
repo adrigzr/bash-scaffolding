@@ -9,9 +9,13 @@ function test() {
 	find . -name "*.bats" -exec sh -c "bats {}" ";"
 }
 
+function format() {
+	find . -name "*.sh" -exec sh -c "shfmt -bn -ci -w {}" ";"
+}
+
 function check() {
-  lint
-  test
+	lint
+	test
 }
 
 # Don't go down here.
@@ -29,13 +33,13 @@ set -e
 
 # Check for scripts.
 [ -n "$1" ] || {
-  echo "first argument is mandatory" >&2
-  exit 1
+	echo "first argument is mandatory" >&2
+	exit 1
 }
 
 [ -n "$(declare -f -F $1)" ] || {
-  echo "script unrecognized" >&2
-  exit 1
+	echo "script unrecognized" >&2
+	exit 1
 }
 
 # Run script.
