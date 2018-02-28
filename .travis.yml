@@ -1,0 +1,10 @@
+---
+language: bash
+
+before_install:
+  - git clone https://github.com/sstephenson/bats.git
+  - sudo bats/install.sh /usr/bin
+
+script:
+  - bash run lint
+  - bash run test

@@ -14,7 +14,7 @@ $ sudo apt install shellcheck
 Run linter.
 
 ```sh
-$ shellcheck file
+$ bash run lint
 ```
 
 ## Formatter
@@ -28,7 +28,7 @@ $ go get -u mvdan.cc/sh/cmd/shfmt
 Run command.
 
 ```sh
-$ shfmt -bn -ci -w file
+$ bash run format
 ```
 
 ## Test Framework
@@ -44,12 +44,20 @@ Install [syntax highlight](https://github.com/sstephenson/bats/wiki/Syntax-Highl
 Run test suit.
 
 ```sh
-$ ./file-test.sh
+$ bash run test
 ```
 
-# Running scripts
+# Configuring scripts
 
-Scripts are defined in `run` file.
+Scripts are defined in `run` file. Every function defined is a command. For example:
+
+```sh
+function check() {
+  lint && test
+}
+```
+
+Can be runned with:
 
 ```sh
 $ bash run check
