@@ -1,4 +1,5 @@
-# bash-scaffolding
+# bash-scaffolding [![Build Status](https://travis-ci.org/adrigzr/bash-scaffolding.svg?branch=master)](https://travis-ci.org/adrigzr/bash-scaffolding)
+
 Bash Project Scaffolding
 
 # Requirements
