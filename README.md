@@ -2,9 +2,9 @@
 
 Bash Project Scaffolding
 
-# Requirements
+## Requirements
 
-## Linter
+### Linter
 
 Install [shellcheck](https://github.com/koalaman/shellcheck).
 
@@ -18,7 +18,7 @@ Run linter.
 $ bash run lint
 ```
 
-## Formatter
+### Formatter
 
 Install [shfmt](https://github.com/mvdan/sh).
 
@@ -32,7 +32,7 @@ Run command.
 $ bash run format
 ```
 
-## Test Framework
+### Test Framework
 
 Install [bats](https://github.com/sstephenson/bats).
 
@@ -48,9 +48,23 @@ Run test suit.
 $ bash run test
 ```
 
-# Configuring scripts
+#### Test Helpers
 
-Scripts are defined in `run` file. Every function defined is a command. For example:
+Optionally install test helpers. They are imported automatically with `load 'helpers/load'`.
+
+```sh
+$ git submodule update --init --recursive
+```
+
+List of currently configured test helpers:
+
+- [bats-support](https://github.com/ztombol/bats-support)
+- [bats-assert](https://github.com/ztombol/bats-assert)
+- [bats-file](https://github.com/ztombol/bats-file)
+
+## Configuring tasks
+
+Tasks are defined in `run` file. Every function defined is a command. For example:
 
 ```sh
 function check() {

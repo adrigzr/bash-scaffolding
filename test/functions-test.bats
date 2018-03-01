@@ -1,6 +1,7 @@
 #!/usr/bin/env bats
 
-. lib/functions.sh
+load "helpers/load"
+load "../lib/functions"
 
 @test "It works" {
   run foo

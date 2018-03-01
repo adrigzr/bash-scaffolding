@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
-# Defined scripts.
-function lint() {
+# Define your tasks here.
+lint() {
 	_check_binaries "shellcheck"
-	shellcheck --format=tty --shell=sh ./**/*.sh
+	find . -type f -iname "*.sh" -o -iname "*.bash" -not -path "./test/helpers*" -exec sh -c "shellcheck --format=tty --shell=bash {}" ";"
 }
 
-function test() {
+test() {
 	_check_binaries "bats"
-	find . -iname "*.bats" -exec sh -c "bats {}" ";"
+	find . -type f -iname "*.bats" -not -path "./test/helpers*" -exec sh -c "bats {}" ";"
 }
 
-function format() {
+format() {
 	_check_binaries "shfmt"
-	find . -iname "*.sh" -exec sh -c "shfmt -bn -ci -w {}" ";"
+	find . -type f -iname "*.sh" -o -iname "*.bash" -not -path "./test/helpers*" -exec sh -c "shfmt -bn -ci -w {}" ";"
 }
 
-function watch() {
+watch() {
 	_check_binaries "entr"
-	find . -type f -iname "*.sh" -o -iname "*.bats" | entr -c bash run check
+	find . -type f -iname "*.sh" -o -iname "*.bash" -o -iname "*.bats" -not -path "./test/helpers*" | entr -c bash run check
 }
 
-function check() {
+check() {
 	lint
 	test
 }
@@ -30,7 +30,7 @@ function check() {
 set -e
 
 # Check binaries.
-function _check_binaries() {
+_check_binaries() {
 	for i in "$@"; do
 		[ -x "$(command -v "$i")" ] || {
 			echo "bats is required" >&2
@@ -39,16 +39,16 @@ function _check_binaries() {
 	done
 }
 
-# Check for scripts.
+# Check for task.
 [ -n "$1" ] || {
 	echo "first argument is mandatory" >&2
 	exit 1
 }
 
 [ -n "$(declare -f -F $1)" ] || {
-	echo "script unrecognized" >&2
+	echo "task unrecognized" >&2
 	exit 1
 }
 
-# Run script.
+# Run task.
 eval "$@"
