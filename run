@@ -2,15 +2,23 @@
 
 # Defined scripts.
 function lint() {
+	_check_binaries "shellcheck"
 	shellcheck --format=tty --shell=sh ./**/*.sh
 }
 
 function test() {
-	find . -name "*.bats" -exec sh -c "bats {}" ";"
+	_check_binaries "bats"
+	find . -iname "*.bats" -exec sh -c "bats {}" ";"
 }
 
 function format() {
-	find . -name "*.sh" -exec sh -c "shfmt -bn -ci -w {}" ";"
+	_check_binaries "shfmt"
+	find . -iname "*.sh" -exec sh -c "shfmt -bn -ci -w {}" ";"
+}
+
+function watch() {
+	_check_binaries "entr"
+	find . -type f -iname "*.sh" -o -iname "*.bats" | entr -c bash run check
 }
 
 function check() {
@@ -22,13 +30,13 @@ function check() {
 set -e
 
 # Check binaries.
-[ -x "$(command -v shellcheck)" ] || {
-	echo "shellcheck is required" >&2
-	exit 1
-}
-[ -x "$(command -v bats)" ] || {
-	echo "bats is required" >&2
-	exit 1
+function _check_binaries() {
+	for i in "$@"; do
+		[ -x "$(command -v "$i")" ] || {
+			echo "bats is required" >&2
+			exit 1
+		}
+	done
 }
 
 # Check for scripts.
