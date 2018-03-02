@@ -10,6 +10,7 @@ _load_helper() {
 	fi
 }
 
-_load_helper "bats-support"
-_load_helper "bats-assert"
-_load_helper "bats-file"
+_load_helper "support"
+_load_helper "assert"
+_load_helper "file"
+_load_helper "mock"
