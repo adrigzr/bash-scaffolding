@@ -53,7 +53,7 @@ $ bash run test
 Optionally install test helpers. They are imported automatically with `load 'helpers/load'`.
 
 ```sh
-$ git submodule update --init --recursive
+$ bash run install
 ```
 
 List of currently configured test helpers:
@@ -61,6 +61,7 @@ List of currently configured test helpers:
 - [bats-support](https://github.com/ztombol/bats-support)
 - [bats-assert](https://github.com/ztombol/bats-assert)
 - [bats-file](https://github.com/ztombol/bats-file)
+- [bats-mocks](https://github.com/jasonkarns/bats-mock)
 
 ## Configuring tasks
 

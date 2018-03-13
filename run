@@ -21,6 +21,10 @@ watch() {
 	find . -type f -iname "*.sh" -o -iname "*.bash" -o -iname "*.bats" -not -path "./test/helpers*" | entr -c bash run check
 }
 
+install() {
+  git submodule update --init --recursive
+}
+
 check() {
 	lint
 	test
